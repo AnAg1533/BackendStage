@@ -1,11 +1,8 @@
 const User = require('../models/user')
 const jwt  = require('jsonwebtoken');
-const expressJwt = require('express-jwt');  //for authorization check
+const expressJwt = require('express-jwt');
 
-
-//Error handler yet to be created
-
-const {errorHandler}  = require('../helper/dbErrorHandler');
+const {errorHandler}  = require('../helpers/dbErrorHandler');
 const req = require('express/lib/request');
 
 
@@ -66,11 +63,8 @@ exports.signOut = (req,res) => {
 }
 
 
-exports.requiredSignin = expressJwt({
-    secret:process.env.JWT_SECRET,
-    algorithms:["HS256"],
-    userProperty:"auth"
-})
+
+
 
 
 exports.isAuth = (req,res,next) => {

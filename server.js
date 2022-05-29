@@ -9,14 +9,22 @@ const mongoose = require('mongoose');
 
 var api = express.Router();
 
-
+require('dotenv').config();
 //middlewares
+
+
+//routes
+
+const annonceRoutes = require('./routers/annonce')
 
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
+
+
+app.use('/api',annonceRoutes);
 
 const port = process.env.PORT || 9090;
 
@@ -25,10 +33,7 @@ app.listen(port,()=>{
 })
 
 
-//mongoose.connect(process.env.DATABASE,  {
-//    useNewUrlParser:true,
-//    useCreateIndex:true,
-//    useUnifiedTopology:true
-//}).then(()=>console.log('Connected to the database'));
+mongoose.connect(process.env.DATABASE,  {
 
-//mongoose.set('useFindAndModify',false);
+}).then(()=>console.log('Connected to the database'));
+

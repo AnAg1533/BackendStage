@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
     salt:String,
     resume:{
         data:Buffer,
-        contentType:string,
+        contentType:String,
         required:false
     }
 

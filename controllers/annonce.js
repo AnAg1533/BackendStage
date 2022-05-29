@@ -26,7 +26,7 @@ exports.create = (req,res) =>
         if(err)
         {
             return res.status(400).json({
-                error:'Annonce does not exist'
+                error:err
             })
         }
         res.json({data})
