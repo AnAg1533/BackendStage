@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const {ObjectId} = mongoose.Schema
 
 
-const candidature = new mongoose.Schema({
+const candidatureSchema = new mongoose.Schema({
     employerusername:{
         type:String,
         required:true,
@@ -27,4 +27,4 @@ const candidature = new mongoose.Schema({
     }
 },{timeStamps:true})
 
-exports.Candidature = mongoose.model('Candidature')
+exports.Candidature = mongoose.model('Candidature',candidatureSchema)

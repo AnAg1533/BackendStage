@@ -1,14 +1,10 @@
 const formidable = require('formidable');
 
-const _ = required('lodash');
 
 const Candidature = require('../models/Candidature')
 
 
 const errorHandler = require('../helpers/dbErrorHandler');
-
-const {EPROTONOSUPPORT} = require('constants')
-
 
 
 exports.candidatureById = (req,res,next,id) => 
@@ -38,25 +34,19 @@ exports.read = (req,res) =>
 
 exports.create = (req,res) => 
 {
-    let form = new formidable.IncomingForm()
-    form.keepExtentions = true
-    form.parse(req,(err,fields,files)=>{
+    // let form = new formidable.IncomingForm()
+    // form.keepExtentions = true
+    // form.parse(req,(err,fields,files)=>{
 
-        if(err)
-        {
-            return res.status(400).json({
-                error:'resume could not be uploaded'
-            })
-        }
+    //     if(err)
+    //     {
+    //         return res.status(400).json({
+    //             error:'resume could not be uploaded'
+    //         })
+    //     }
 
-        const {employeruseraname,employeeusername,status,datecreated} = fields
+        const fields = req.body;
 
-        if(!employeeusername || !employeeusername || !status || !datecreated)
-        {
-            return res.status(400).json({
-                error:"ALL FIELDS ARE REQUIRED"
-            })
-        }
 
 
         let candidature = new Candidature(fields)
@@ -73,7 +63,7 @@ exports.create = (req,res) =>
 
             res.json(result);
         })
-    })
+    //})
 }
 
 
@@ -98,8 +88,16 @@ exports.remove = (req,res) =>
     })
 }
 
-
-exports.update = (req,res) =>
+exports.list = (req,res) => 
 {
-
+    Candidature.find().exec((err,data)=>
+    {
+        if(err)
+        {
+            return res.status(400).json({
+                error:errorHandler(err)
+            });
+        }
+        res.json(data)
+    })
 }
