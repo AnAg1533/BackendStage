@@ -1,4 +1,4 @@
-const {errorHandler} = required('../helpers/dbErrorHandler');
+const {errorHandler} = require('../helpers/dbErrorHandler');
 
 
 const User = require('../models/user')

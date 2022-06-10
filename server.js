@@ -17,6 +17,9 @@ require('dotenv').config();
 
 const annonceRoutes = require('./routers/annonce')
 const candidatureRoutes = require('./routers/candidature')
+const userRoutes = require('./routers/user')
+const authRoutes = require('./routers/auth')
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -26,6 +29,7 @@ app.use(cors());
 
 app.use('/api',annonceRoutes);
 app.use('/api',candidatureRoutes);
+app.use('/api',authRoutes);
 
 
 const port = process.env.PORT || 9090;

@@ -1,15 +1,14 @@
-const req = require("express/lib/request");
-
-exportss.userSignUpValidator = (req,res,next) =>
+exports.userSigupValidator = (req,res,next)=>
 {
     req.check("name","Name is required").notEmpty()
-    req.check("email","Email must be between 3 and 32")
-    .matches(/.+\@.+\..+/)
-    .isLength({
-        min:4,
-        max:32
-    });
-
+    req.check("email","Email must be between 3 and 32 characters")
+        .matches(/.+\@.+\..+/)
+        .withMessage("Email must contain @")
+        .isLength({
+            min:4,
+            max:32
+        });
+    
     req.check("password","password is required").notEmpty();
     req.check("password")
         .isLength({min:6})
